@@ -2,14 +2,14 @@ package com.nhom5.supermarket.service;
 
 import java.util.List;
 
-import com.nhom5.supermarket.entity.ProductTypeEntity;
+import com.nhom5.supermarket.entity.LoaiSanPham;
 
 public interface ProductTypeService{
-	public String saveOrUpdate(ProductTypeEntity productTypeEntity);
+	public String saveOrUpdate(LoaiSanPham productTypeEntity);
 
-	public List<ProductTypeEntity> findAll();
+	public List<LoaiSanPham> findAll();
 
-	public ProductTypeEntity findById(Long id);
+	public LoaiSanPham findById(Long id);
 
 	public String deleteById(Long id);
 }

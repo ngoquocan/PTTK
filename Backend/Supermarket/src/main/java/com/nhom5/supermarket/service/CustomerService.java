@@ -2,14 +2,14 @@ package com.nhom5.supermarket.service;
 
 import java.util.List;
 
-import com.nhom5.supermarket.entity.CustomerEntity;
+import com.nhom5.supermarket.entity.KhachHang;
 
 public interface CustomerService{
-	public String saveOrUpdate(CustomerEntity customerEntity);
+	public String saveOrUpdate(KhachHang customerEntity);
 
-	public List<CustomerEntity> findAll();
+	public List<KhachHang> findAll();
 
-	public CustomerEntity findById(Long id);
+	public KhachHang findById(Long id);
 
 	public String deleteById(Long id);
 }

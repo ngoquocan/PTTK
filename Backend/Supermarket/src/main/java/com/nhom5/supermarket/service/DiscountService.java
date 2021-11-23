@@ -2,14 +2,14 @@ package com.nhom5.supermarket.service;
 
 import java.util.List;
 
-import com.nhom5.supermarket.entity.DiscountEntity;
+import com.nhom5.supermarket.entity.GiaGiam;
 
 public interface DiscountService{
-	public String saveOrUpdate(DiscountEntity discountEntity);
+	public String saveOrUpdate(GiaGiam discountEntity);
 
-	public List<DiscountEntity> findAll();
+	public List<GiaGiam> findAll();
 
-	public DiscountEntity findById(Long id);
+	public GiaGiam findById(Long id);
 
 	public String deleteById(Long id);
 }

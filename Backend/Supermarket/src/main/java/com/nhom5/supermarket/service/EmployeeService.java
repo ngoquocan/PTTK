@@ -2,14 +2,14 @@ package com.nhom5.supermarket.service;
 
 import java.util.List;
 
-import com.nhom5.supermarket.entity.EmployeeEntity;
+import com.nhom5.supermarket.entity.NhanVien;
 
 public interface EmployeeService{
-	public String saveOrUpdate(EmployeeEntity employeeEntity);
+	public String saveOrUpdate(NhanVien employeeEntity);
 
-	public List<EmployeeEntity> findAll();
+	public List<NhanVien> findAll();
 
-	public EmployeeEntity findById(Long id);
+	public NhanVien findById(Long id);
 
 	public String deleteById(Long id);
 }

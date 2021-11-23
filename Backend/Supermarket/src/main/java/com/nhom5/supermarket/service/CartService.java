@@ -2,16 +2,16 @@ package com.nhom5.supermarket.service;
 
 import java.util.List;
 
-import com.nhom5.supermarket.entity.CartEntity;
+import com.nhom5.supermarket.entity.GioHang;
 
 public interface CartService{
-	public String saveOrUpdate(CartEntity cartEntity);
+	public String saveOrUpdate(GioHang cartEntity);
 
-	public List<CartEntity> findAll();
+	public List<GioHang> findAll();
 
-	public CartEntity findById(Long id);
+	public GioHang findById(Long id);
 	
-	public CartEntity findByCustomerId(Long id);
+	public GioHang findByCustomerId(Long id);
 
 	public String deleteById(Long id);
 }

@@ -2,16 +2,16 @@ package com.nhom5.supermarket.service;
 
 import java.util.List;
 
-import com.nhom5.supermarket.entity.OrderEntity;
+import com.nhom5.supermarket.entity.HoaDon;
 
 public interface OrderService{
-	public String saveOrUpdate(OrderEntity orderEntity);
+	public String saveOrUpdate(HoaDon orderEntity);
 
-	public List<OrderEntity> findAll();
+	public List<HoaDon> findAll();
 	
-	public List<OrderEntity> findByCustomerId(Long id);
+	public List<HoaDon> findByCustomerId(Long id);
 
-	public OrderEntity findById(Long id);
+	public HoaDon findById(Long id);
 
 	public String deleteById(Long id);
 }

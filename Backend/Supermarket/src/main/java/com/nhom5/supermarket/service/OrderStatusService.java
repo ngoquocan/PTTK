@@ -2,14 +2,14 @@ package com.nhom5.supermarket.service;
 
 import java.util.List;
 
-import com.nhom5.supermarket.entity.OrderStatusEntity;
+import com.nhom5.supermarket.entity.TrangThai;
 
 public interface OrderStatusService{
-	public String saveOrUpdate(OrderStatusEntity orderStatusEntity);
+	public String saveOrUpdate(TrangThai orderStatusEntity);
 
-	public List<OrderStatusEntity> findAll();
+	public List<TrangThai> findAll();
 
-	public OrderStatusEntity findById(Long id);
+	public TrangThai findById(Long id);
 
 	public String deleteById(Long id);
 }

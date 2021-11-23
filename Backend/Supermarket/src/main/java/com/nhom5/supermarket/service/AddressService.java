@@ -2,14 +2,14 @@ package com.nhom5.supermarket.service;
 
 import java.util.List;
 
-import com.nhom5.supermarket.entity.AddressEntity;
+import com.nhom5.supermarket.entity.DiaChi;
 
 public interface AddressService{
-	public String saveOrUpdate(AddressEntity addressEntity);
+	public String saveOrUpdate(DiaChi addressEntity);
 
-	public List<AddressEntity> findAll();
+	public List<DiaChi> findAll();
 
-	public AddressEntity findById(Long id);
+	public DiaChi findById(Long id);
 
 	public String deleteById(Long id);
 	

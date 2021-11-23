@@ -2,14 +2,14 @@ package com.nhom5.supermarket.service;
 
 import java.util.List;
 
-import com.nhom5.supermarket.entity.SupplierEntity;
+import com.nhom5.supermarket.entity.NhaCungCap;
 
 public interface SupplierService{
-	public String saveOrUpdate(SupplierEntity supplierEntity);
+	public String saveOrUpdate(NhaCungCap supplierEntity);
 
-	public List<SupplierEntity> findAll();
+	public List<NhaCungCap> findAll();
 
-	public SupplierEntity findById(Long id);
+	public NhaCungCap findById(Long id);
 
 	public String deleteById(Long id);
 }

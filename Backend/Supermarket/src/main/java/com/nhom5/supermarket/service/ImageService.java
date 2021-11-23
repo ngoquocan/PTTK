@@ -2,16 +2,16 @@ package com.nhom5.supermarket.service;
 
 import java.util.List;
 
-import com.nhom5.supermarket.entity.ImageEntity;
+import com.nhom5.supermarket.entity.Anh;
 
 public interface ImageService{
-	public String saveOrUpdate(ImageEntity imageEntity);
+	public String saveOrUpdate(Anh imageEntity);
 
-	public List<ImageEntity> findAll();
+	public List<Anh> findAll();
 	
-	public ImageEntity findById(Long id);
+	public Anh findById(Long id);
 
 	public String deleteById(Long id);
 	
-	public List<ImageEntity> findByProductId(Long id);
+	public List<Anh> findByProductId(Long id);
 }

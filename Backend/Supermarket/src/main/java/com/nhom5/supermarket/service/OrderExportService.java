@@ -2,14 +2,14 @@ package com.nhom5.supermarket.service;
 
 import java.util.List;
 
-import com.nhom5.supermarket.entity.OrderExportEntity;
+import com.nhom5.supermarket.entity.HoaDonNhap;
 
 public interface OrderExportService{
-	public String saveOrUpdate(OrderExportEntity orderExportEntity);
+	public String saveOrUpdate(HoaDonNhap orderExportEntity);
 
-	public List<OrderExportEntity> findAll();
+	public List<HoaDonNhap> findAll();
 
-	public OrderExportEntity findById(Long id);
+	public HoaDonNhap findById(Long id);
 
 	public String deleteById(Long id);
 }

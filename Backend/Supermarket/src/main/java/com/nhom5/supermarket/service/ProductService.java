@@ -2,14 +2,14 @@ package com.nhom5.supermarket.service;
 
 import java.util.List;
 
-import com.nhom5.supermarket.entity.ProductEntity;
+import com.nhom5.supermarket.entity.SanPham;
 
 public interface ProductService{
-	public String saveOrUpdate(ProductEntity productEntity);
+	public String saveOrUpdate(SanPham productEntity);
 
-	public List<ProductEntity> findAll();
+	public List<SanPham> findAll();
 
-	public ProductEntity findById(Long id);
+	public SanPham findById(Long id);
 
 	public String deleteById(Long id);
 }

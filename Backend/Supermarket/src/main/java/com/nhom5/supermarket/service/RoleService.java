@@ -2,14 +2,14 @@ package com.nhom5.supermarket.service;
 
 import java.util.List;
 
-import com.nhom5.supermarket.entity.RoleEntity;
+import com.nhom5.supermarket.entity.Role;
 
 public interface RoleService{
-	public String saveOrUpdate(RoleEntity roleEntity);
+	public String saveOrUpdate(Role roleEntity);
 
-	public List<RoleEntity> findAll();
+	public List<Role> findAll();
 
-	public RoleEntity findById(Long id);
+	public Role findById(Long id);
 
 	public String deleteById(Long id);
 }
