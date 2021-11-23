@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Chọn sản phẩm</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<h1>hello</h1>
+	<form action="/khachhang/themgiohang" method="GET" th:object="${sanpham}">
+		<p><b>Mã SP:</b> <span th:text="*{id}"></span></p>
+		<p><b>Tên Sản Phẩm:</b> <span th:text="*{ten}"></span></p>
+		<p><b>Loại Sản Phẩm:</b> <span th:text="*{loai.tenloai}"></span></p>
+		<p><b>Giá Bán:</b> <span th:text="*{giaban}"></span></p>
+		<p><b>Nhà cung cấp:</b> <span th:text="*{nhacungcap.ten}"></span></p>
+		<p><b>Mô tả:</b> <span th:text="*{mota}"></span></p>
+		<input type="text" name = "soluong" placeholder="Nhập số lượng..." required="required">
+		<input type= "submit" value = "Tiếp tục">
+	</form>
+</body>
+</html>
