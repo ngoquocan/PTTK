@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Chi tiết hóa đơn nhập</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<h1>hello</h1>
+	<h3>Mã đơn hàng:</h3>
+	<h3>Ngày nhập:</h3>
+	<table>
+		<tr>
+			<th>Mã SP</th>
+			<th>Tên SP</th>
+			<th>Loại</th>
+			<th>Giá bán</th>
+			<th>Nhà cung cấp</th>
+			<th>Số lượng</th>
+			<th>Số lượng còn lại</th>
+			<th>Thành tiền</th>	
+		</tr>
+		<tr th:each="item : ${hoadonnhap.listHDNCT}">
+			<td th:text= "${item.sanpham.id}"> </td>
+			<td th:text= "${item.sanpham.ten}"> </td>
+			<td th:text= "${item.sanpham.loai.tenloai}"> </td>
+			<td th:text= "${item.sanpham.gianhap}"> </td>
+			<td th:text= "${item.sanpham.nhacungcap.ten}"> </td>
+			<td th:text= "${item.soluong}"> </td>
+			<td th:text= "${item.thanhtien}"></td>
+		</tr>
+	</table>
+	<h3 th:text=${hoadonnhap.tongtien}> </h3>
+	<a href="#">Về trang chủ</a>
+</body>
+</html>

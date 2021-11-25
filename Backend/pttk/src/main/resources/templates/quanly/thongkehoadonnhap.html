@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Thống kê hóa đơn nhập theo nhà cung cấp</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<h1>Thống kê hóa đơn nhập theo nhà cung cấp</h1>
+	<table>
+		<tr>
+			<th>Mã đơn hàng</th>
+			<th>Ngày nhập</th>
+			<th>Nhà cung cấp</th>
+			<th>Tổng tiền</th>	
+		</tr>
+		<tr th:each="item,loop : ${listhoadonnhap}">
+			<td th:text= "${item.id}"> </td>
+			<td th:text= "${item.ngaynhap}"> </td>
+			<td th:text= "${item.nhacungcap.ten}"> </td>
+			<td th:text= "${item.tongtien}"> </td>
+			<td> <a th:href="@{'/quanly/chitiethoadonnhap?index=' +${loop.index}} ">Xem chi tiết</a>
+		</tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Thống kê sản phẩm theo doanh thu</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<h1>Thống kê sản phẩm theo doanh thu</h1>
+	<table>
+		<tr>
+			<th>Mã SP</th>
+			<th>Tên SP</th>
+			<th>Tên NCC</th>
+			<th>Số Lượng</th>
+			<th>Tổng tiền</th>
+		</tr>
+		<tr th:each="item : ${listTKSP}">
+			<td th:text= "${item.id}"> </td>
+			<td th:text= "${item.tensanpham}"> </td>
+			<td th:text= "${item.tennhacungcap}"> </td>
+			<td th:text= "${item.soluong}"> </td>
+			<td th:text= "${item.tongtien}"> </td>
+			<td><a th:href="@{'chitietsanpham/' + ${item.id}}">Xem chi tiết</a></td>
+		</tr>
+	</table>
+	<h3 th:text=${tongtien}> </h3>
+</body>
+</html>

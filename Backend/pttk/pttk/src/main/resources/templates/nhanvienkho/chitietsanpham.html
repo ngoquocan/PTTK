@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Thông tin sản phẩm</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<h1>Thông tin sản phẩm</h1>
+	<form action="/nhanvienkho/nhaphang" method="GET" th:object="${hdnct}">
+		<p><b>Mã SP:</b> <span th:text="*{sanpham.id}"></span></p>
+		<p><b>Tên Sản Phẩm:</b> <span th:text="*{sanpham.ten}"></span></p>
+		<p><b>Loại Sản Phẩm:</b> <span th:text="*{sanpham.loai.tenloai}"></span></p>
+		<p><b>Giá Nhập:</b> <span th:text="*{sanpham.gianhap}"></span></p>
+		<p><b>Nhà cung cấp:</b> <span th:text="*{sanpham.nhacungcap.ten}"></span></p>
+		<input type="text" th:field="*{soluong}" name = "soluong" placeholder="Nhập thông tin sản phẩm..." required="required">
+		<input type= "submit" value = "Tiếp tục">
+	</form>
+</body>
+</html>

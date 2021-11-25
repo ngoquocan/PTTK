@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Thêm nhà cung cấp</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<h1>Thêm nhà cung cấp</h1>
+	<form action="/nhanvienkho/luuNhaCungCap" method="POST" th:object = "${nhacungcap}">
+		<input type="text" th:field = "*{ten}" placeholder="Nhập tên nhà cung cấp" required="required">
+		<input type="text" th:field = "*{email}" placeholder="Nhập email" required="required">
+		<input type="text" th:field = "*{sdt}" placeholder="Nhập số điện thoại" required="required">
+		<input type="text" th:field = "*{diachi.thanhpho}" placeholder="Nhập thành phố" required="required">
+		<input type="text" th:field = "*{diachi.quan}" placeholder="Nhập quận" required="required">
+		<input type="text" th:field = "*{diachi.phuong}" placeholder="Nhập phường" required="required">
+		<input type="text" th:field = "*{diachi.mota}" placeholder="Nhập địa chỉ chi tiết" required="required">
+		<input type= "submit" value = "Thêm">
+	</form>
+</body>
+</html>

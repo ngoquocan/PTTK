@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Danh sách đơn hàng</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<h1>Danh sách đơn hàng</h1>
+	<form action="/nhanvienkho/quanlydonhang" method="GET" th:object = "${listtrangthai}">
+		<select name = "trangthai" required="required">
+			<option hidden="" disabled selected value="" th:data-option = "0">Lọc theo trạng thái</option>
+			<option th:each="trangthai,loop : ${listtrangthai}" th:value="${trangthai.id}"  th:text= "${trangthai.ten}" > </option>								
+		</select>
+		<input type= "submit" value = "Lọc">
+	</form>
+	<br>
+	<table>
+		<tr>
+			<th>Mã đơn hàng</th>
+			<th>Ngày đặt</th>
+			<th>Tổng tiền</th>
+			<th>Trạng thái</th>		
+		</tr>
+		<tr th:each="item,loop : ${listhoadon}">
+			<td th:text= "${item.id}"> </td>
+			<td th:text= "${item.ngaydat}"> </td>
+			<td th:text= "${item.tongtien}"> </td>
+			<td> <a href="#" th:text= "${item.trangthai.ten}"></a>
+		</tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Đăng nhập</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<h1>Đăng nhập</h1>
+	<form action="/nhanvien/trangchu" method="POST">
+		<input type="text" name="username" placeholder="Nhập tên đăng nhập" required="required">
+		<input type="password" name="password" placeholder="Nhập mật khẩu" required="required">
+		<input type= "submit" value = "Đăng Nhập">
+	</form>
+	<a href="../dangnhap" >Đăng nhập với khách hàng</a> 
+</body>
+</html>

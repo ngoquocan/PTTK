@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Thêm sản phẩm</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<h1>Thêm sản phẩm</h1>
+	<form action="/nhanvienkho/luuSanPham" method="POST" th:object = "${sanpham}">
+		<input type="text" th:field = "*{ten}" placeholder="Nhập tên sản phẩm" required="required">
+		<input type="text" th:field = "*{gianhap}" placeholder="Nhập giá nhập" required="required">
+		<input type="text" th:field = "*{giaban}" placeholder="Nhập giá bán" required="required">
+		
+		<select name = "loaisanpham" required="required">
+			<option hidden="" disabled selected value="" th:data-option = "0">Chọn loại sản phẩm</option>
+			<option th:each="loaisanpham, loop : ${listLoaiSanPham}" th:value="${loop.index}"  th:text= "${loaisanpham.tenloai}" > </option>								
+		</select>
+		<select name = "nhacungcap" required="required">
+			<option hidden="" disabled selected value="" th:data-option = "0">Chọn nhà sản xuất</option>
+			<option th:each="nhacungcap,loop : ${listNhaCungCap}" th:value="${loop.index}"  th:text= "${nhacungcap.ten}" > </option>								
+		</select>
+		
+		<input type="text" th:field = "*{mota}" placeholder="Nhập mô tả" required="required">
+		<input type="text" th:field = "*{soluong}" placeholder="Nhập mô tả" required="required">
+		<input type= "submit" value = "Thêm">
+	</form>
+</body>
+</html>

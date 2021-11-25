@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +23,8 @@ import com.example.demo.entity.HoaDon;
 import com.example.demo.entity.HoaDonChiTiet;
 import com.example.demo.entity.HoaDonNhapChiTiet;
 import com.example.demo.entity.KhachHang;
+import com.example.demo.entity.LoaiSanPham;
+import com.example.demo.entity.NguoiDung;
 import com.example.demo.entity.NhaCungCap;
 import com.example.demo.entity.Role;
 import com.example.demo.entity.SanPham;
@@ -31,10 +35,12 @@ import com.example.demo.repository.GioHangRepository;
 import com.example.demo.repository.HoaDonChiTietRepository;
 import com.example.demo.repository.HoaDonRepository;
 import com.example.demo.repository.KhachHangRepository;
+import com.example.demo.repository.LoaiSanPhamRepository;
 import com.example.demo.repository.SanPhamRepository;
 
 @Controller
 @RequestMapping("/khachhang")
+@Transactional(rollbackFor = {Exception.class, Throwable.class})
 public class KhachHangController {
 	
 	@Autowired
@@ -51,6 +57,8 @@ public class KhachHangController {
 	private HoaDonRepository hoaDonRepository;
 	@Autowired
 	private HoaDonChiTietRepository hoaDonChiTietRepository;
+	@Autowired
+	private LoaiSanPhamRepository loaiSanPhamRepository;
 	
 	public String dangnhap() {
 		return null;
@@ -67,18 +75,22 @@ public class KhachHangController {
 		DiaChi diachi = diaChiRepository.save(khachHang.getDiachi());
 		khachHang.setDiachi(diachi);
 		khachHang.setRole(new Role((long) 3,"KHACHHANG"));
-		khachHangRepository.save(khachHang);
+		khachHang = khachHangRepository.save(khachHang);
+		GioHang gioHang = new GioHang();
+		gioHang.setKhachhang(khachHang);
+		gioHangRepository.save(gioHang);
 		return "dangnhap";
 	}
-	
 	@GetMapping("/trangchu")
-	public String trangchu(HttpSession session,ModelMap modelMap) {
+	public String trangchu(HttpSession session, ModelMap modelMap) {
 		List<SanPham> listSanPham = sanPhamRepository.findAll();
 		session.setAttribute("listsanpham", listSanPham);
 		modelMap.addAttribute("listsanpham", listSanPham);
+		List<LoaiSanPham> listLoaiSanPham = loaiSanPhamRepository.findAll();
+		modelMap.addAttribute("listloaisanpham", listLoaiSanPham);
 		return "khachhang/trangchu";
-		
 	}
+	
 	@GetMapping("/timkiem")
 	public String timsanpham(ModelMap modelMap,HttpSession session, @RequestParam(name = "data") String data) {
 		List<SanPham> listSanPham = sanPhamRepository.findByTenContaining(data);
@@ -99,10 +111,12 @@ public class KhachHangController {
 		return "khachhang/chitietsanpham";
 	}
 	
+	@SuppressWarnings("unused")
 	@RequestMapping("/giohang")
 	public String xemgiohang(HttpSession session,ModelMap modelMap) {
 		//tìm giỏ hàng theo id khách hàng
-		GioHang giohang = gioHangRepository.findByKhachhang_id((long)1);		
+		KhachHang khachhang = (KhachHang) session.getAttribute("khachhang");
+		GioHang giohang = gioHangRepository.findByKhachhang_id(khachhang.getId());		
 		List<GioHangChiTiet> listGHCT = giohang.getListGHCT();
 		
 		//tính tổng tiền
@@ -120,7 +134,8 @@ public class KhachHangController {
 	public String themvaogiohang(HttpSession session,ModelMap modelMap,
 			@RequestParam(name = "soluong") int soluong) {
 		//tìm giỏ hàng theo id khách hàng
-		GioHang giohang = gioHangRepository.findByKhachhang_id((long)1);		
+		KhachHang khachhang = (KhachHang) session.getAttribute("khachhang");
+		GioHang giohang = gioHangRepository.findByKhachhang_id(khachhang.getId());		
 		List<GioHangChiTiet> listGHCT = giohang.getListGHCT();
 		
 		//them sản phẩm vào giỏ hàng
@@ -145,16 +160,20 @@ public class KhachHangController {
 	@SuppressWarnings("unchecked")
 	@GetMapping("/dathang")
 	public String dathang(HttpSession session,ModelMap modelMap) {
-		GioHang giohang = gioHangRepository.findByKhachhang_id((long)1);
-		List<GioHangChiTiet> listGHCT = giohang.getListGHCT();
 		KhachHang khachhang = (KhachHang) session.getAttribute("khachhang");
+		GioHang giohang = gioHangRepository.findByKhachhang_id(khachhang.getId());
+		List<GioHangChiTiet> listGHCT = giohang.getListGHCT();
 		TrangThai trangThai = new TrangThai((long) 1, "Chờ duyệt đơn");
 		//tính tổng tiền
 		Double tongtien = (double) 0;
 		for(GioHangChiTiet item : listGHCT) {
 			tongtien += item.getThanhtien();
 		}
-		HoaDon hoadon = new HoaDon(tongtien, null, khachhang, null, trangThai);
+		//lấy thời gian
+		long millis=System.currentTimeMillis();
+		Timestamp time = new Timestamp(millis);
+		
+		HoaDon hoadon = new HoaDon(tongtien, time, khachhang, null, trangThai);
 		hoaDonRepository.save(hoadon);
 		
 		List<HoaDonChiTiet> listHDCT = new ArrayList<>();

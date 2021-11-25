@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Trang chủ</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<h1>Trang chủ</h1>
+	<a href="/khachhang/giohang">Xem giỏ hàng</a>
+	<a href="/khachhang/danhsachdonhang">Xem danh sách đơn hàng</a>
+	<form action="/khachhang/timkiem" method="GET">
+		<input type="text" name= "data" placeholder="Nhập thông tin sản phẩm..." required="required">
+		<input type= "submit" value = "Tìm kiếm">
+	</form>
+	<br>
+	<table>
+		<tr>
+			<th>Mã SP</th>
+			<th>Tên SP</th>
+			<th>Loại</th>
+			<th>Giá nhập</th>
+			<th>Nhà cung cấp</th>
+			<th>Mô tả</th>		
+		</tr>
+		<tr th:each="item,loop : ${listsanpham}">
+			<td th:text= "${item.id}"> </td>
+			<td th:text= "${item.ten}"> </td>
+			<td th:text= "${item.loai.tenloai}"> </td>
+			<td th:text= "${item.gianhap}"> </td>
+			<td th:text= "${item.nhacungcap.ten}"> </td>
+			<td th:text= "${item.mota}"> </td>
+			<td> <a th:href="@{'chitietsanpham?index=' +${loop.index} }"> Xem chi tiết </a>
+		</tr>
+	</table>
+</body>
+</html>

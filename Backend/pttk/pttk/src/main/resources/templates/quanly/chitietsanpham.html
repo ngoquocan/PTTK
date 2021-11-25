@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Thông tin sản phẩm</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<h1>Thông tin sản phẩm</h1>
+	<form action="/quanly/trangchu" method="GET" th:object="${sanpham}">
+		<p><b>Mã SP:</b> <span th:text="*{id}"></span></p>
+		<p><b>Tên Sản Phẩm:</b> <span th:text="*{ten}"></span></p>
+		<p><b>Loại Sản Phẩm:</b> <span th:text="*{loai.tenloai}"></span></p>
+		<p><b>Giá Nhập:</b> <span th:text="*{gianhap}"></span></p>
+		<p><b>Giá Bán:</b> <span th:text="*{giaban}"></span></p>
+		<p><b>Nhà cung cấp:</b> <span th:text="*{nhacungcap.ten}"></span></p>
+		<input type= "submit" value = "Về trang chủ">
+	</form>
+</body>
+</html>
